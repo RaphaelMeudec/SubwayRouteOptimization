@@ -1,2 +1,4 @@
 # SubwayRouteOptimization
-C++ Project at ENSTA ParisTech: finding the best route in the Parisian subway
+C++ - ENSTA ParisTech Project: finding the best route in the Parisian subway using Djikstra algorithm
+
+Status : Ended
