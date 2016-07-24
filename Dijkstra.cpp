@@ -19,10 +19,8 @@ int find_time_min (vector<int>& Q,const chemin& P)
 {
     int min = Time_MAX;
     int min_pos = -1;
-    for (unsigned i=0; i<Q.size(); i++)
-    {
-        if (P.read_time(Q[i])<=min)
-        {
+    for (unsigned i=0; i<Q.size(); i++) {
+        if (P.read_time(Q[i])<=min) {
             min = P.read_time(Q[i]);
             min_pos = Q[i];
         }

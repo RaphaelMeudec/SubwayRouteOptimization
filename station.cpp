@@ -7,8 +7,8 @@
 //#include "matrice.h"
 using namespace std;
 
-station& station::operator = (const station & S)
-{
+//Override = operator for station class
+station& station::operator = (const station & S) { 
     if(this==&S) return *this;
     x = S.x;
     y = S.y;
@@ -18,82 +18,69 @@ station& station::operator = (const station & S)
     return * this;
 }
 
-void station::print()
-{
+//Simple print for station class
+void station::print() {
     cout<<x<<" "<<y<<" "<<name<<" "<<No<<endl;
     return;
 }
 
-QString station::QStringStation()
-{
+//Return a QString with the name of the station
+QString station::QStringStation() {
     QString s;
-    //s += x + "";
-    s += /*y + "" + */QString::fromUtf8(name.c_str()) + " " /*+ No + "."*/;
+    s = QString::fromUtf8(name.c_str());
     return s;
 }
 
-string station::Get_Name() const
-{
+//Name getter
+string station::Get_Name() const {
     return name;
 }
 
-int station::Get_Coorx() const
-{
+//X position getter
+int station::Get_Coorx() const {
     return x;
 }
 
-int station::Get_Coory() const
-{
+//Y position getter
+int station::Get_Coory() const {
     return y;
 }
 
-/*
-string * station::Get_Line() const
-{
-    return lignes;
-}
-*/
-void station::voisin(station& T, line& ligne)
-{
-    //cout << "Utilisation de la fonction voisin" << endl;
-    int i=T.Get_No();
-    //cout << "L'acces au numéro se fait" << endl;
-    arc A(i, ligne,2.);
-    //cout << "l'arc est initialisé" << endl;
-    fils.push_back(A);
-    //cout << "l'arc est ajouté a la liste" << endl;
-    //A.print();
-    //cout<<"station presente: ";
-    //print();
-    //cout<<"fils.size: "<<fils.size()<<endl;
-    //cout<<"fils.fin: "<<i<<endl;
-}
-void station::change_voisin(station& T, line& ligne, int temps)
-{
-    for (unsigned i=0; i<fils.size(); i++)
-    {
-        if (ligne.Get_line_ordre()==fils[i].Get_line_ordre()) fils[i].Change_Temps() = temps;
-    }
-    return ;
-}
-
-int station::Get_No() const
-{
+//Id getter
+int station::Get_No() const {
     return No;
 }
 
-// cette fonction est pour trouver une station et la lier dans une ligne
+//Add an arc to the possible arcs of this station
+void station::voisin(station& T, line& ligne) {
+    int i=T.Get_No();
+    arc A(i, ligne,2.);
+    //Add the A arc to the list of possible arcs from this station
+    fils.push_back(A);
+}
+
+//Change time value of all arcs of a line
+void station::change_voisin(station& T, line& ligne, int temps) {
+    for (unsigned i=0; i<fils.size(); i++) {
+        if (ligne.Get_line_ordre()==fils[i].Get_line_ordre()) {
+            fils[i].Change_Temps() = temps;
+        }
+    }
+}
+
+
+//Station finder by name
 station& find_station (string str,int count_stat, vector<station>& S)
 {
     string tmp_name ="NULL";
     //cout<<"S:"<<S<<endl;
-    for (int i=0; i<count_stat; i++)
-    {
+    for (int i=0; i<count_stat; i++) {
         tmp_name=S[i].Get_Name();
         //cout<<tmp_name<<endl;
-        if (tmp_name==str) return S[i];
+        if (tmp_name==str) {
+            return S[i];
+        }
     }
-    //cout<<endl;
     cout<<"Cannot find this station! Cannot initialise the lines!"<<endl<<"The Unfound name is: "<<str;
     return S[count_stat-1];
 }
