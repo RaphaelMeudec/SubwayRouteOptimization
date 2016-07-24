@@ -1,12 +1,12 @@
-#ifndef DIJKASTRA_INCLUDED
-#define DIJKASTRA_INCLUDED
+#ifndef DIJKSTRA_INCLUDED
+#define DIJKSTRA_INCLUDED
 #include <vector>
 #include "path.h"
 #include "station.h"
 
 int find_pos (vector<int>& , int );
-int find_time_min (vector<int>& ,const chemin& );
-bool Dijkastra (vector<station> , chemin & , int , int , int );
+int find_time_min (vector<int>& ,const path& );
+bool Dijkstra (vector<station> , path& , int , int , int );
 
 
-#endif // DIJKASTRA_INCLUDED
+#endif // DIJKSTRA_INCLUDED

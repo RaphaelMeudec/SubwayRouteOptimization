@@ -56,13 +56,10 @@ QString test(int start, int dest, QString *stations_file, QString *lignes_file)
     /* Cheminx d'accès Linux */
     //read_line.open(lignes_file->toLocal8Bit().data();
 
-    if(read_line.is_open())
-    {
+    if(read_line.is_open()) {
         in_line(read_line, line_vector_original, count_line, count_stat, station_vector_originale);
         read_line.close();
-    }
-    else
-    {
+    } else {
         cout<<"lignes.data file NOT Found!";
         return 0;
     }
@@ -81,9 +78,7 @@ QString test(int start, int dest, QString *stations_file, QString *lignes_file)
     write_retard_ligne(crer_ligne_retard, count_line);
     crer_ligne_retard.close();
 
-
-
-    chemin P(count_stat);
+    path P(count_stat);
 
     for(int i=0; i<count_line; i++)
     {
@@ -113,12 +108,12 @@ QString test(int start, int dest, QString *stations_file, QString *lignes_file)
 
     cout<<"retard bien lu!"<<endl;
 
-    if (Dijkastra (station_vector_originale, P, count_stat, start, dest))
+    if (Dijkstra (station_vector_originale, P, count_stat, start, dest))
     {
-        cout<<"chemin trouvé: "<<endl;
+        cout<<"path found: "<<endl;
         //P.print(start, dest, count_stat, station_vector_originale);
     }
-    else cout<<"ne peut pas trouver un chemin de "<<start<<" à "<<dest<<endl;
+    else cout<<"can't find a path from "<<start<<" to "<<dest<<endl;
     QString ans = P.QStringTrajet(start, dest, count_stat, station_vector_originale);
     return ans;
 }

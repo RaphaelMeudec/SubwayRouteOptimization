@@ -70,14 +70,13 @@ void station::change_voisin(station& T, line& ligne, int temps) {
 
 
 //Station finder by name
-station& find_station (string str,int count_stat, vector<station>& S)
-{
-    string tmp_name ="NULL";
-    //cout<<"S:"<<S<<endl;
+station& find_station (string str,int count_stat, vector<station>& S) {
+    string tmpName ="NULL";
+
     for (int i=0; i<count_stat; i++) {
-        tmp_name=S[i].Get_Name();
-        //cout<<tmp_name<<endl;
-        if (tmp_name==str) {
+        tmpName=S[i].Get_Name();
+
+        if (tmpName==str) {
             return S[i];
         }
     }
@@ -85,48 +84,40 @@ station& find_station (string str,int count_stat, vector<station>& S)
     return S[count_stat-1];
 }
 
-station& find_station (int number,int count_stat, vector<station>& S)
-{
-    //string tmp_name ="NULL";
-    //cout<<"S:"<<S<<endl;
-    int tmp_number = 0;
-    for (int i=0; i<count_stat; i++)
-    {
-        tmp_number=S[i].Get_No();
-        //cout<<tmp_name<<endl;
-        if (tmp_number==number) return S[i];
+//Station finder by id
+station& find_station (int number,int count_stat, vector<station>& S) {
+    int tmpId = 0;
+
+    for (int i=0; i<count_stat; i++) {
+        tmpId=S[i].Get_No();
+        if (tmpId==number) {
+            return S[i];
+        }
     }
-    //cout<<endl;
-    //cout<<"Cannot find this station! Cannot initialise the lines!"<<endl<<"The Unfound name is: "<<str;
+    cout<<"Cannot find this station! Cannot initialise the lines!"<<endl<<"The Unfound name is: "<<str;
     return S[count_stat-1];
 }
 
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------
-/*
-vector<arc> station::get_fils()
-{
-    return fils;
+//Id Station finder by name
+int searchStation(string s, vector<station> vect) {
+    for (int i=0; i<vect.size(); i++) {
+        station tmp=vect[i];
+        if (tmp.Get_Name() == s) {
+            return tmp.Get_No();
+        }
+    }
+    return -1;
 }
-*/
 
-
-double station::Existence_arc (int No1, int No2, chemin const P)
-{
-    for (unsigned k=0; k<fils.size(); k++)
-    {
-        if(No2==fils[k].Get_Fin())
-        {
-            if (P.read_line(No1)=="Depart")
-            {
+//Find if there is an arc between two stations and return time of travel
+double station::Existence_arc (int No1, int No2, path const P) {
+    for (unsigned k=0; k<fils.size(); k++) {
+        if(No2==fils[k].Get_Fin()) {
+            if (P.read_line(No1)=="Depart") {
                 return fils[k].Get_Temps();
-            }
-
-            else if(P.read_line(No1)==Ligne_Between(No2))
-            {
+            } else if(P.read_line(No1)==Ligne_Between(No2)) {
                 return fils[k].Get_Temps();
-            }
-            else
-            {
+            } else {
                 return fils[k].Get_Temps()+3;
             }
 
@@ -135,40 +126,20 @@ double station::Existence_arc (int No1, int No2, chemin const P)
     return -1;
 }
 
-
-double station::Existence_arc (int No1)
-{
-    for (unsigned k=0; k<fils.size(); k++)
-    {
-        if(No1==fils[k].Get_Fin())
-        {
+//Find if there is an arc between this station and an other one, and return time of travel
+double station::Existence_arc (int No1) {
+    for (unsigned k=0; k<fils.size(); k++) {
+        if(No1==fils[k].Get_Fin()) {
             return fils[k].Get_Temps() ;
         }
     }
     return -1;
 }
 
-string station::Ligne_Between(int N)
-{
-    for (unsigned k=0; k<fils.size(); k++)
-    {
+//Return line number between two stations if it exists
+string station::Ligne_Between(int N) {
+    for (unsigned k=0; k<fils.size(); k++) {
         if (N==fils[k].Get_Fin()) return fils[k].Get_line_number();
     }
     return "Error!! Can't find the line!";
-
 }
-
-int searchStation(string s, vector<station> vect)
-{
-    for (int i=0; i<vect.size(); i++)
-    {
-        station tmp=vect[i];
-        if (tmp.Get_Name() == s)
-        {
-            return tmp.Get_No();
-        }
-    }
-    return -1;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------------------------------------------------

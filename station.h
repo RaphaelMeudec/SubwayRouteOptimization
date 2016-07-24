@@ -10,11 +10,9 @@
 using namespace std;
 
 class arc;
-class chemin;
+class path;
 
-//------------- Création de la station de métro-----------------------------------------------------------
-class station
-{
+class station {
 
 private:
     string name;      // Nom de la station ( ex:"Abbesses" )
@@ -41,7 +39,7 @@ public:
     void print();                              // Affiche coordonnées, nom, numéro de la station
     QString QStringStation();                  // Récupère l'équivalent du print en QString
     double Existence_arc (int No1);            // Retourne le temps entre deux stations s'il existe un arc, retourne -1 sinon
-    double Existence_arc (int , int , chemin );
+    double Existence_arc (int , int , path );
     string Ligne_Between (int No);             // Retourne le nom de la ligne s'il existe un arc entre deux stations
     vector<arc> get_fils();                    // Retourne le vecteur des arc de la station
 };
