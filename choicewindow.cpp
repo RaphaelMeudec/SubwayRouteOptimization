@@ -17,7 +17,7 @@ choicewindow::choicewindow()
     //logo_img->setFixedHeight(120);
     //logo_img->setFixedWidth(120);
     /* Chemin d'acces Windows */
-    QPixmap *logo = new QPixmap("C:\\Users\\Raphael\\Documents\\MetroTest\\logo.png");
+    QPixmap *logo = new QPixmap("C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\logo.png");
     /* Chemin d'acces Linux */
     //QPixmap *error_img = new QPixmap("/home/m/meudec/Documents/MetroTest/Warning.png");
     logo_img->setPixmap(*logo);
@@ -46,42 +46,25 @@ choicewindow::choicewindow()
 }
 
 
-void choicewindow::chargerdata()
-{
-    if (choix->currentText().isEmpty())
-    {
+void choicewindow::chargerdata() {
+    if (choix->currentText().isEmpty()) {
         string erreur = "Veuillez entrer la ville qui vous intéresse";
         QString error(erreur.c_str());
         ErrorWindow *errorwindow = new ErrorWindow(error, this);
         errorwindow->show();
-    }
+    } else {
+        QString str_stations;
+        QString str_lignes;
 
-    else
-    {
-    QString str_stations;
-    QString str_lignes;
+        /* Chemin d'acces Windows */
+        str_stations += "C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\";
+        str_lignes += "C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\";
 
-    /**************************************************/
-    /*   ZONE A CHANGER POUR TOUS LES CHEMINS D'ACCES */
-    /**************************************************/
-
-    /* Chemin d'acces Windows */
-    str_stations += "C:\\Users\\Raphael\\Documents\\MetroTest\\";
-    str_lignes += "C:\\Users\\Raphael\\Documents\\MetroTest\\";
-    /* Chemin d'acces Linux */
-    //str_lignes += "/home/m/meudec/Documents/MetroTest/";
-    //str_lignes += "/home/m/meudec/Documents/MetroTest/";
-
-    /**************************************************/
-    /**************************************************/
-    /**************************************************/
-
-
-    str_stations += choix->currentText();
-    str_lignes += choix->currentText();
-    str_stations += ".data";
-    str_lignes += "_lignes.data";
-    mainwindow *window = new mainwindow(str_stations, str_lignes);
-    window->show();
+        str_stations += choix->currentText();
+        str_lignes += choix->currentText();
+        str_stations += ".data";
+        str_lignes += "_lignes.data";
+        mainwindow *window = new mainwindow(str_stations, str_lignes);
+        window->show();
     }
 }

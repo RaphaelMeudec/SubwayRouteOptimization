@@ -67,7 +67,7 @@ void in_line(ifstream &file, vector<line>& L,int& N,int const count_stat,vector<
         }
         //cout<<"is that good here?"<<endl;
     }
-    L[N-1].delete_station(find_station(station_name,count_stat, S));
+    L[N-1].delete_station();
     return ;
 }
 

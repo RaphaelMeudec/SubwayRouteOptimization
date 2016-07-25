@@ -94,7 +94,6 @@ station& find_station (int number,int count_stat, vector<station>& S) {
             return S[i];
         }
     }
-    cout<<"Cannot find this station! Cannot initialise the lines!"<<endl<<"The Unfound name is: "<<str;
     return S[count_stat-1];
 }
 

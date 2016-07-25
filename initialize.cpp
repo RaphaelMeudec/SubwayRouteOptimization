@@ -39,14 +39,12 @@ QString test(int start, int dest, QString *stations_file, QString *lignes_file)
     {
         in_stat (read_station, station_vector_originale, count_stat);
         read_station.close();
-    }
-    else
-    {
+    } else {
         cout<<"Stations.data file NOT Found!"<<endl;
         return 0;
     }
 
-    station_vector_originale.erase(station_vector_originale.end());
+    station_vector_originale.pop_back();
     count_stat--;
     cout << "stations initialisées" << endl;
     vector<line> line_vector_original;

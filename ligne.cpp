@@ -19,10 +19,8 @@ void line::add_station (station& S)
     length++;
 }
 
-void line::delete_station (station& S)
-{
-
-    list_stat.erase(list_stat.end());
+void line::delete_station () {
+    list_stat.pop_back();
     length--;
     return ;
 }

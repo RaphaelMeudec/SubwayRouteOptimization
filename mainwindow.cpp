@@ -15,9 +15,9 @@ mainwindow::mainwindow(QString str_stations, QString str_lignes)
 {
     //stations_file = new QString(str_stations);
     printf(QDir::currentPath().toLatin1().data());
-    stations_file = new QString(QDir::currentPath() + "Stations.data");
+    stations_file = new QString(str_stations);
     //lignes_file = new QString(str_lignes);
-    lignes_file = new QString("C:\\Users\\Raphael\\Documents\\Github\\MetroTest\\MetroTest\\lignes.data");
+    lignes_file = new QString(str_lignes);
     /* Initialisation  des Widgets*/
     QLabel *carte = new QLabel(this);
 
@@ -136,7 +136,6 @@ void mainwindow::genererTrajet()
 
     /* Initialisation du réseau */
     int count_stat = 0; //Enregistrer le nombre de stations
-    int count_line = 0; //Enregistrer le nombre de lignes
 
     std::vector<station> station_vector_originale;
 

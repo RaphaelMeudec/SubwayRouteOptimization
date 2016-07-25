@@ -29,7 +29,7 @@ class line
     }
     void init(string , string , int );  //Initialiser une ligne avec son numéro, son nom et son nombre ordinal
     void add_station (station& S);      //Ajouter une station à la fin d'une ligne
-    void delete_station (station& S);   //Supprimer une station à la fin d'une ligne
+    void delete_station ();             //Supprimer une station à la fin d'une ligne
     int Get_length () const ;           //Retourne la longueur d'une ligne
     station & Get_station (int i);      //Retourne la i_ième station de la ligne
     string Get_line_number();           //Retourne le numéro de cette ligne

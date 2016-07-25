@@ -74,7 +74,7 @@ QString path::QStringTrajet (int start, int dest, int count_stat, vector<station
         outputText += T.QStringStation();
         outputText += "sur la ligne: ";
         string lineName = line[previous[dest]].c_str();
-        outputText += QString::fromUtf8(lineName);
+        outputText += QString::fromStdString(lineName);
         outputText += "<br>";
 
         //station.print();
