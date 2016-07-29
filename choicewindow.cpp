@@ -8,14 +8,14 @@
 #include <QtGui>
 using namespace std;
 
+
+
 choicewindow::choicewindow()
 {
     choix = new QComboBox;
     charger = new QPushButton("Charger");
     fermer = new QPushButton("Fermer");
     logo_img = new QLabel(this);
-    //logo_img->setFixedHeight(120);
-    //logo_img->setFixedWidth(120);
     /* Chemin d'acces Windows */
     QPixmap *logo = new QPixmap("C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\logo.png");
     /* Chemin d'acces Linux */
@@ -57,8 +57,8 @@ void choicewindow::chargerdata() {
         QString str_lignes;
 
         /* Chemin d'acces Windows */
-        str_stations += "C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\";
-        str_lignes += "C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\";
+        str_stations = "C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\";
+        str_lignes = "C:\\Users\\Raphael\\Documents\\Github\\SubwayRouteOptimization\\";
 
         str_stations += choix->currentText();
         str_lignes += choix->currentText();

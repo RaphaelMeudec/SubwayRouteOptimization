@@ -23,7 +23,6 @@ using namespace std;
 
 QString test(int start, int dest, QString *stations_file, QString *lignes_file)
 {
-    cout << "entree dans test(i,j)" << endl;
     int count_stat = 0; //Enregistrer le nombre de station
     int count_line = 0; //Enregistrer le nombre de ligne
 
@@ -63,26 +62,10 @@ QString test(int start, int dest, QString *stations_file, QString *lignes_file)
     }
     cout << "lignes initialisées" << endl;
 
-    //crer les deux fichers "retard"
-    ofstream crer_stat_retard;
-    crer_stat_retard.open ("stations_retard.data");
-    write_retard_station(crer_stat_retard, count_stat, count_line, line_vector_original);
-    crer_stat_retard.close();
-
-    //cout<<"finish creating the late files."<<endl;
-
-    ofstream crer_ligne_retard;
-    crer_ligne_retard.open ("ligne_retard.data");
-    write_retard_ligne(crer_ligne_retard, count_line);
-    crer_ligne_retard.close();
-
     path P(count_stat);
 
-    for(int i=0; i<count_line; i++)
-    {
-
-        for(int j=0; j<line_vector_original[i].Get_length()-1; j++)
-        {
+    for(int i=0; i<count_line; i++) {
+        for(int j=0; j<line_vector_original[i].Get_length()-1; j++) {
             find_station(line_vector_original[i].Get_station(j).Get_Name(), count_stat, station_vector_originale).voisin(line_vector_original[i].Get_station(j+1),line_vector_original[i]);
         }
     }
@@ -106,12 +89,12 @@ QString test(int start, int dest, QString *stations_file, QString *lignes_file)
 
     cout<<"retard bien lu!"<<endl;
 
-    if (Dijkstra (station_vector_originale, P, count_stat, start, dest))
-    {
+    if (Dijkstra (station_vector_originale, P, count_stat, start, dest)) {
         cout<<"path found: "<<endl;
         //P.print(start, dest, count_stat, station_vector_originale);
+    } else {
+        cout<<"can't find a path from "<<start<<" to "<<dest<<endl;
     }
-    else cout<<"can't find a path from "<<start<<" to "<<dest<<endl;
     QString ans = P.QStringTrajet(start, dest, count_stat, station_vector_originale);
     return ans;
 }
